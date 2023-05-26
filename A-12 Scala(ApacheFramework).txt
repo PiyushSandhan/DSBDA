@@ -1,0 +1,86 @@
+Write a simple program in SCALA using Apache Spark framework
+
+calculator.scala
+
+object calculator {
+  def main(args: Array[String]){
+    var ch:Char=0;
+    var num1:Int=0
+    var num2:Int=0
+    var result:Int=0
+
+    print("Select operation (+,-,*,/,%): ")
+    ch=scala.io.StdIn.readChar()
+
+    println("Enter num1: ")
+    num1=scala.io.StdIn.readInt()
+
+    println("Enter num2: ")
+    num2=scala.io.StdIn.readInt()
+
+    ch match{
+      case '+' => result=num1+num2
+      case '-' => result=num1-num2
+      case '*' => result=num1*num2
+      case '/' => result=num1/num2
+      case '%' => result=num1%num2
+    }
+    println("Result is "+result)
+  }
+}
+
+
+
+
+
+Steps to install scala:
+
+1)sudo apt install scala
+
+scala -version
+
+2)wget https://apachemirror.wuchna.com/spark/spark-3.2.1/spark-3.2.1-bin-hadoop2.7.tgz
+
+Extract the Apache Spark tar file.
+tar -xvzf spark-3.1.1-bin-hadoop2.7.tgz
+
+3) Move the extracted Spark directory to /opt directory.
+sudo mv spark-3.1.1-bin-hadoop2.7 /opt/spark
+
+4)Now you have to set a few environmental variables in .profile file before starting up the
+spark.
+echo "export SPARK_HOME=/opt/spark" >> ~/.profile
+echo "export PATH=$PATH:/opt/spark/bin:/opt/spark/sbin" >> ~/.profile
+echo "export PYSPARK_PYTHON=/usr/bin/python3" >> ~/.profile
+
+5)To make sure that these new environment variables are reachable within the shell and
+available to Apache Spark, it is also mandatory to run the following command to take recent
+changes into effect.
+
+source ~/.profile
+
+Step 6) ls -l /opt/spark
+
+Start Apache Spark in Ubuntu
+Step 7) Run the following command to start the Spark master service and slave service.
+start-master.sh
+
+start-workers.sh spark://localhost:7077
+(if workers not starting then remove and install openssh:
+sudo apt-get remove openssh-client openssh-server
+sudo apt-get install openssh-client openssh-server)
+
+Step 8) Once the service is started go to the browser and type the following URL access spark
+page. From the page, you can see my master and slave service is started.
+http://localhost:8080/
+
+Step 9) You can also check if spark-shell works fine by launching the spark-shell command.
+Spark-shell
+
+java --version
+
+sudo apt install snapd
+
+snap find “intellij”
+
+sudo snap install intellij-idea-community --classic

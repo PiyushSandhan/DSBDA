@@ -1,0 +1,11 @@
+Gender,Math_score,Reading_score,Writing_score,Placement_score,Placement_count,Region
+Male,80,75,70,85,2,Pune
+Female,85,78,82,90,3,Mumbai
+Male,90,80,88,92,1,Amravati
+Female,92,85,90,95,4,Pune
+Male,78,82,75,80,3,Mumbai
+Female,88,90,92,94,2,Amravati
+Male,82,85,78,85,4,Pune
+Female,75,80,90,88,1,Mumbai
+Male,90,92,85,88,3,Amravati
+Female,85,88,90,92,2,Mumbai

@@ -1,0 +1,63 @@
+4. Write a Python program to display some basic statistical details like percentile, mean, standard deviation etc. of the species of ‘Iris-setosa’, ‘Iris-versicolor’ and ‘Iris- versicolor’ of iris.csvdataset.Provide the codes with outputs and explain everything that you do in this step.
+
+
+# Part 2
+import pandas as pd
+import numpy as np
+import seaborn as sb
+import matplotlib.pyplot as plt
+df=pd.read_csv("Iris.csv")
+df
+
+
+
+
+df['Species'].value_counts()
+
+
+
+
+df.rename(columns={"sepal_length":"Slength","sepal_width":"Swidth",
+"petal_length ":"Plenght","petal_width":"Pwidth"},inplace=True)
+df
+
+
+
+
+
+
+sum_data = df["SepalLengthCm"].sum()
+mean_data = df["SepalLengthCm"].mean()
+median_data = df["SepalLengthCm"].median()
+print("SepalLengthCm sum ", sum_data)
+print("SepalLengthCm mean",mean_data)
+print("SepalLengthCm median",median_data)
+
+
+
+
+
+df.isnull()
+
+
+
+
+
+data_setosa=df["Species"]=="setosa"
+print("For setosa")
+print(df[data_setosa].describe())
+
+
+
+
+data_virginica=df["Species"]=="virginica"
+print("For virginica")
+print(df[data_virginica].describe())
+
+
+
+
+
+data_versicolor=df["Species"]=='versicolor'
+print('For versicolor')
+print(df[data_versicolor].describe())

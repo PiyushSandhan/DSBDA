@@ -1,0 +1,77 @@
+###...
+ Data Visualization I
+1. Use the inbuilt dataset 'titanic'. The dataset contains 891 rows and contains information 
+about the passengers who boarded the unfortunate Titanic ship. Use the Seaborn library 
+to see if we can find any patterns in the data. 
+2. Write a code to check how the price of the ticket (column name: 'fare') for each 
+passenger is distributed by plotting a histogram.
+...####
+
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+df=pd.read_csv('Titanic.csv')
+df
+
+
+df.describe()
+df.info()
+
+df.columns
+
+
+sns.set_style('whitegrid')
+sns.countplot (x='Survived', data=df, hue='Sex')
+
+
+
+sns.countplot (x='Survived', data=df, hue='Pclass')
+
+
+
+sns.distplot(df['Age'].dropna (), kde=False, bins=30)
+
+
+sns.jointplot(x='Survived',y='Fare', data=df,hue='Sex')
+
+
+sns.countplot(x='SibSp',data=df)
+
+
+df['Fare'].hist (bins=50, figsize=(10,4))
+
+
+sns.jointplot(x='Pclass',y='Age', data=df, hue='Sex')
+
+
+plt.figure(figsize=(10,4))
+sns.boxplot(x='Pclass', y='Age', data=df, hue='Sex')
+
+
+sns.pairplot(df)
+
+df['Fare'].max()
+
+df['Fare'].min()
+
+import seaborn as sns
+df=sns.load_dataset('titanic')
+sns.histplot(df['fare'],kde=False,bins=10)
+
+
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+sns.barplot(x='sex', y='age', data=df,estimator=np.std)
+
+
+
+
+
+
+

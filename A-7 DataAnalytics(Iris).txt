@@ -1,0 +1,80 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+
+
+df=pd.read_csv("Iris.csv")
+df
+
+
+
+
+df.isnull().sum()
+
+
+
+
+#Removing null values
+columns=['SepalLengthCm','SepalWidthCm','PetalLengthCm','PetalWidthCm']
+for col in columns:
+ df[col]=df[col].fillna(df[col].mean())
+df
+
+
+
+
+
+df.isnull().sum()
+
+
+
+#Converting categorical values ot numeric values
+from sklearn import preprocessing
+label_encoder = preprocessing.LabelEncoder()
+df['Species']= label_encoder.fit_transform(df['Species'])
+df['Species'].unique()
+df
+
+
+
+
+y=df['Species']
+x=df.drop('Species',axis=1)
+
+
+
+
+#Spliting data for training and testing
+#Here, 20% data used for testing and 80% data used for training
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size = 0.2,random_state=2)
+
+
+
+
+# import the class
+from sklearn.naive_bayes import GaussianNB
+gaussian = GaussianNB()
+gaussian.fit(x_train, y_train)
+
+
+
+
+y_pred = gaussian.predict(x_test)
+
+
+
+from sklearn.metrics import accuracy_score,precision_score,recall_score
+accuracy = accuracy_score(y_test,y_pred)
+precision = precision_score(y_test, y_pred,average='micro')
+recall = recall_score(y_test, y_pred,average='micro')
+
+
+
+
+from sklearn.metrics import precision_score,confusion_matrix,accuracy_score,recall_score
+cm = confusion_matrix(y_test, y_pred)
+

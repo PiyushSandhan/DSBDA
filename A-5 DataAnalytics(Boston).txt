@@ -1,0 +1,94 @@
+###...
+ Data Analytics I
+Create a Linear Regression Model using Python/R to predict home prices using Boston Housing 
+Dataset (https://www.kaggle.com/c/boston-housing). The Boston Housing dataset contains 
+information about various houses in Boston through different parameters. There are 506 samples 
+and 14 feature variables in this dataset. 
+The objective is to predict the value of prices of the house using the given features.
+...###
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+
+
+
+
+df=pd.read_csv("Boston.csv")
+df
+
+
+
+
+df.head()
+
+
+
+
+df.info()
+
+
+
+
+#null values must be removed before using regression
+df.isna().sum()
+
+
+
+
+target_features = "medv"
+#seperate object from target feature
+y = df[target_features]
+#sepperate object for input features
+x = df.drop(target_features, axis=1)
+x.head()
+y.head()
+
+
+
+
+#Spliting data for training and testing
+#Here, 20% data used for testing and 80% data used for training
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size = 0.2,random_state=2)
+
+
+
+
+
+train_score=round(regression.score(x_train,y_train)*100,2)
+print('Train score of linear regression',train_score)
+y_pred = regression.predict(x_test)
+
+
+
+
+
+from sklearn.metrics import r2_score
+score=round(r2_score(y_test,y_pred)*100,2)
+print('r_2 score',score)
+
+
+
+
+round(regression.score(x_test,y_test)*100,2)
+
+
+
+
+
+from sklearn import metrics
+print("Mean absolute error on test data of linear regression",metrics.mean_absolute_error(y_test,y_pred))
+print("Mean squared error on test data of linear regression",metrics.mean_squared_error(y_test,y_pred))
+print("Root mean squared error on test data of linear regression",np.sqrt(metrics.mean_squared_error(y_test,y_pred)))
+
+
+
+
+
+
+df1=pd.DataFrame({'Actual':y_test,'Predicted':y_pred,'Variance':y_test-y_pred})
+df1.head()

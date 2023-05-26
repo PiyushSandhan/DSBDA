@@ -1,0 +1,81 @@
+###...
+ Data Analytics II
+1. Implement logistic regression using Python/R to perform classification on 
+Social_Network_Ads.csv dataset.
+2. Compute Confusion matrix to find TP, FP, TN, FN, Accuracy, Error rate, Precision, 
+Recall on the given dataset
+...###
+
+
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+
+
+df = pd.read_csv("Social_Network_Ads.csv")
+df
+
+
+
+plt.scatter(df.EstimatedSalary,df.Purchased,marker= '+',color='red')
+
+
+
+# input
+x = df[['Age','EstimatedSalary']]
+y = df['Purchased']
+
+
+
+
+
+from sklearn.model_selection import train_test_split
+xtrain, xtest, ytrain, ytest = train_test_split( x, y, test_size = 0.1,random_state = 0)
+
+
+
+
+
+from sklearn.preprocessing import StandardScaler
+sc_x = StandardScaler()
+xtrain = sc_x.fit_transform(xtrain)
+xtest = sc_x.transform(xtest)
+print (xtrain[0:10, :])
+
+
+
+# check the lenth of taining
+len(xtrain)
+len(xtest)
+
+
+
+
+# check the traing values of eacg element
+xtrain
+xtest
+
+
+
+
+# create a model of logistic regression
+from sklearn.linear_model import LogisticRegression
+model = LogisticRegression()
+
+
+
+model.fit(xtrain,ytrain)
+
+
+
+model.predict(xtest)
+
+
+
+model.score(xtest,ytest)
+
+
+

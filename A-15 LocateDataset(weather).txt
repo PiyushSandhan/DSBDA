@@ -1,0 +1,77 @@
+Locate dataset (e.g., sample_weather.txt) for working on weather data which reads the text input files and finds average for temperature, dew point and wind speed.
+
+//simple.text
+Date,           Temp,   DewPoint,   WindSpeed
+2022-05-01,     72,     54,         5.1
+2022-05-02,     68,     55,         6.5
+2022-05-03,     71,     56,         7.0
+2022-05-04,     74,     57,         7.3
+2022-05-05,     65,     54,         6.2
+2022-05-06,     63,     52,         5.7
+2022-05-07,     72,     54,         5.3
+
+
+//Weather.java
+
+package com.jay.scala;
+
+import java.io.*;
+
+public class Weather {
+    public static void main(String[] args) throws IOException {
+        String filePath="C:\\Users\\jayba\\IdeaProjects\\sacala\\src\\simple.txt";
+
+        BufferedReader reader=new BufferedReader(new FileReader(filePath));
+
+        //Skip the header line
+        String line=reader.readLine();
+
+        //Initialize the sum and count variable
+        double sumTemp=0;
+        double sumDewPoint=0;
+        double sumWindSpeed=0;
+        int count=0;
+
+        //read each line of file
+        while((line= reader.readLine())!=null){
+            //split line into field
+            String[] fields=line.split(",");
+
+            //Parse values
+            double temp=Double.parseDouble(fields[1]);
+            double dewPoint=Double.parseDouble(fields[2]);
+            double windSpeed=Double.parseDouble(fields[3]);
+
+            //add value to sum variable
+            sumTemp+=temp;
+            sumDewPoint+=dewPoint;
+            sumWindSpeed+=windSpeed;
+
+            //increment counter
+            count++;
+        }
+        //calculate average
+        double avgTemp=sumTemp/count;
+        double avgDewPoint=sumDewPoint/count;
+        double avgWindSpeed=sumWindSpeed/count;
+
+        //Print average
+        System.out.println("Avg Temp "+avgTemp);
+        System.out.println("Avg Dew Point "+avgDewPoint);
+        System.out.println("Avg wind Speed "+avgWindSpeed);
+
+        //close reader
+        reader.close();
+    }
+}
+
+
+sudo apt update
+
+sudo apt install scala
+
+cd /path/to/scala/file/directory
+
+scalac HelloWorld.scala
+
+

@@ -1,0 +1,79 @@
+###..
+ Data Wrangling II
+Create an “Academic performance” dataset of students and perform the following operations 
+using Python.
+1. Scan all variables for missing values and inconsistencies. If there are missing values 
+and/or inconsistencies, use any of the suitable techniques to deal with them. 
+2. Scan all numeric variables for outliers. If there are outliers, use any of the suitable 
+techniques to deal with them. 
+3. Apply data transformations on at least one of the variables. The purpose of this 
+transformation should be one of the following reasons: to change the scale for better 
+understanding of the variable, to convert a non-linear relation into a linear one, or to 
+decrease the skewness and convert the distribution into a normal distribution. 
+Reason and document your approach properly.
+...###
+
+
+import pandas as pd
+import numpy as np
+
+
+df = pd.read_csv("StudentsPerformance.csv")
+df
+
+
+#Data Preprocessing
+#Checking for null values
+df.isnull()
+
+
+
+#Converting categorical values ot numeric values
+from sklearn import preprocessing
+label_encoder = preprocessing.LabelEncoder()
+df['gender']= label_encoder.fit_transform(df['gender'])
+df['gender'].unique()
+df
+
+
+#Finding outliers
+import matplotlib.pyplot as plt
+
+
+boxplot = df.boxplot()
+plt.show()
+
+
+
+meanv=df['writing score'].mean()
+df['writing score'].fillna(value=meanv,inplace=True)
+df
+
+
+
+import scipy.stats as stats
+mean=df['writing score'].mean()
+std=df['writing score'].std()
+zscores=stats.zscore(df['writing score'])
+print(zscores)
+
+
+
+
+threshold = 0
+mean=df['writing score'].mean()
+std=df['writing score'].std()
+outlier = []
+for i in df['writing score']:
+  z = (i-mean)/std
+  if z > threshold: 
+    outlier.append(i)
+print('outlier in dataset is', outlier)
+
+
+
+
+import matplotlib.pyplot as plt
+df['writing score'].plot(kind = 'hist')
+df['log_math'] = np.log10(df['writing score'])
+df['log_math'].plot(kind = 'hist')

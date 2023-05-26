@@ -1,0 +1,65 @@
+###...
+ Data Visualization III
+Download the Iris flower dataset or any other dataset into a DataFrame. (e.g.,
+https://archive.ics.uci.edu/ml/datasets/Iris ). Scan the dataset and give the inference as:
+1. List down the features and their types (e.g., numeric, nominal) available in the dataset.
+2. Create a histogram for each feature in the dataset to illustrate the feature distributions. 
+3. Create a box plot for each feature in the dataset. 
+4. Compare distributions and identify outliers.
+...####
+
+
+import numpy as np
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+df1 = pd.read_csv('IRIS.csv')
+df1
+
+df = pd.DataFrame(df1)
+df.head()
+
+
+df.describe()
+df.info()
+df.columns
+
+
+df['SepalLengthCm'].max()
+
+
+df['SepalLengthCm'].min()
+
+
+df['SepalLengthCm'].hist(bins = 30)
+
+df['PetalLengthCm'].max()
+
+df['PetalLengthCm'].min()
+
+df['PetalLengthCm'].hist(bins = 30)
+
+df['PetalWidthCm'].max()
+
+df['PetalWidthCm'].min()
+
+df['PetalWidthCm'].hist(bins = 30)
+
+df['SepalWidthCm'].max()
+
+df['SepalWidthCm'].min()
+
+df['SepalWidthCm'].hist(bins = 30)
+
+df['Species'].value_counts()
+
+df['Species'].hist(bins = 30)
+
+sns.boxplot(x = 'SepalLengthCm' ,data = df)
+
+sns.boxplot(x = 'SepalWidthCm' , data = df)
+
+sns.boxplot(x = 'PetalWidthCm' , data = df)
+
+sns.boxplot(x = 'PetalLengthCm', data = df)
